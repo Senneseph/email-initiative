@@ -21,15 +21,90 @@ The Email Initiative aims to address the growing problems with email communicati
 3. When a recipient no longer wishes to receive emails from a sender, they can revoke the token
 4. Mail servers can implement policies based on token validity and sender reputation
 
+## Implementation
+
+The project is implemented as a Node.js application with TypeScript. It provides a RESTful API for token management and validation, and can be integrated with email servers through plugins or proxies.
+
+### Key Components
+
+- **Token Service**: Generates and validates tokens
+- **Email Parser**: Parses and tokenizes email addresses
+- **API**: RESTful endpoints for token operations
+- **Database**: Stores tokens and validation history
+
+### Technology Stack
+
+- **Backend**: Node.js with TypeScript
+- **Database**: PostgreSQL
+- **API**: Express.js
+- **Validation**: Zod
+- **Logging**: Winston
+- **Containerization**: Docker
+
 ## Project Structure
+
+```text
+├── docs/                 # Documentation
+├── src/                  # Source code
+│   ├── api/              # API routes
+│   ├── db/               # Database code
+│   ├── email-parser/     # Email parsing utilities
+│   ├── token-service/    # Token management logic
+│   ├── types/            # TypeScript type definitions
+│   ├── utils/            # Utility functions
+│   └── index.ts          # Application entry point
+├── .env                  # Environment variables
+├── docker-compose.yml    # Docker Compose configuration
+├── Dockerfile            # Docker configuration
+└── package.json          # Project dependencies
+```
 
 ## Getting Started
 
-To begin working with this project:
+### Prerequisites
 
-1. Clone the repository
-2. Run `docker-compose up -d` to build, test, and serve the application
-3. Access the application at `http://localhost:$APP_PORT` where $APP_PORT is specified in your `.env` or `default.env` file
+- Node.js 18 or higher
+- PostgreSQL 15 or higher
+- Docker and Docker Compose (optional)
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/email-initiative.git
+   cd email-initiative
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+
+   ```bash
+   # Edit .env with your configuration
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+### Using Docker
+
+1. Start the services:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+2. Access the API at <http://localhost:3000>
+
+3. Access Adminer (database management) at <http://localhost:8080>
 
 ## Development
 
@@ -40,21 +115,18 @@ This project follows a specification-first approach with strict adherence to the
 - Event-driven architecture
 - Web Components (Custom Elements API)
 
-## Contributing
+## Documentation
 
-Contributions to this project should follow the process outlined in [CONTRIBUTING.md](./CONTRIBUTING.md). Please respect this repository's code style and structure.
+- [API Documentation](docs/api-specifications.md)
+- [Token System Design](docs/token-system-design.md)
+- [Database Schema](docs/database-schema.md)
+- [Email Server Integration](docs/email-server-integration.md)
+- [User Interface](docs/user-interface.md)
 
-## Future Plans
+## Status
 
-- Create a formal RFC for the email token system
-- Develop reference implementations for popular mail servers
-- Build a comprehensive trust and reputation system
-- Create user-friendly interfaces for token management
+This project is currently in the implementation phase. The core token system is being developed, with email server integration to follow.
 
 ## License
 
 [License information to be determined]
-
----
-
-For more information, contact [Contact information to be determined]

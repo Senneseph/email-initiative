@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # Application service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=email_token_system
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - JWT_SECRET=development_secret_key
+      - JWT_EXPIRES_IN=1d
+      - TOKEN_LENGTH=8
+      - TOKEN_EXPIRATION_DAYS=365
+      - LOG_LEVEL=debug
+    volumes:
+      - ./src:/app/src
+      - ./logs:/app/logs
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # Database service
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=email_token_system
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # Adminer for database management
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres-data:

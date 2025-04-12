@@ -78,18 +78,20 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 The format for a tokenized email address is:
 
-```
+```text
 $token+username@domain.tld
 ```
 
 Where:
+
 - `$` is a literal dollar sign that indicates a token is present
 - `token` is the unique token string associated with the sender
 - `+` is the delimiter between the token and username
 - `username@domain.tld` is the standard email address
 
 Example:
-```
+
+```text
 $abc123+john@example.com
 ```
 
@@ -103,12 +105,13 @@ Tokens MUST be:
 
 The RECOMMENDED token format is:
 
-```
+```text
 [a-z0-9]{6,12}
 ```
 
 Examples:
-```
+
+```text
 abc123
 x7y8z9
 rt56hn90plm
@@ -120,23 +123,25 @@ Implementations MAY support alternative formats for tokenized addresses:
 
 #### 3.3.1. Subdomain Format
 
-```
+```text
 username@token.domain.tld
 ```
 
 Example:
-```
+
+```text
 john@abc123.example.com
 ```
 
 #### 3.3.2. Local Part Format
 
-```
+```text
 username-token@domain.tld
 ```
 
 Example:
-```
+
+```text
 john-abc123@example.com
 ```
 
@@ -484,7 +489,7 @@ def process_policy_request(request):
 
 ### B.2. Email Request
 
-```
+```text
 To: $request+user@example.com
 From: sender@company.com
 Subject: Token Request
@@ -498,7 +503,7 @@ Website: https://example.com
 
 ### B.3. Mailto Link
 
-```
+```text
 <a href="mailto:$request+user@example.com?subject=Token%20Request&body=Purpose%3A%20Newsletter%0ACompany%3A%20Example%20Company%0AWebsite%3A%20https%3A%2F%2Fexample.com">
   Request Email Token
 </a>
